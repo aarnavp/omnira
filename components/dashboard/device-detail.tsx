@@ -142,7 +142,7 @@ export function DeviceDetail({ deviceId }: { deviceId: string }) {
       </div>
 
       <Card className="mt-6">
-        <CardHeader eyebrow="Controls" title="How much this device contributes" description="Changes apply immediately." />
+        <CardHeader eyebrow="Controls" title="Contribution limits" description="Changes apply immediately." />
         <CardBody className="flex flex-col gap-6">
           <div className="flex items-center justify-between gap-4">
             <div>

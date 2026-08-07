@@ -41,7 +41,7 @@ const DEPLOY_STEPS = [
 
 export function StepsSection() {
   return (
-    <section className="border-t border-(--color-border) bg-(--color-surface-sunken)">
+    <section className="bg-(--color-surface-sunken)">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="font-(family-name:--font-display) text-3xl font-semibold text-(--color-text)">

@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { SidebarNav } from "./sidebar-nav";
 import { UserMenu } from "./user-menu";
 import { Icon } from "@/components/ui/icon";
+import { RouteTransition } from "@/components/system/route-transition";
 import type { User } from "@/types/user";
 
 export function DashboardShell({ user, children }: { user: User; children: ReactNode }) {
@@ -12,7 +13,7 @@ export function DashboardShell({ user, children }: { user: User; children: React
   return (
     <div className="flex min-h-full bg-(--color-surface)">
       {/* Desktop sidebar */}
-      <aside className="hidden w-64 shrink-0 border-r border-(--color-border) bg-(--color-surface-raised) lg:block">
+      <aside className="hidden w-64 shrink-0 bg-(--color-surface-raised) shadow-[1px_0_0_rgba(11,15,13,0.06)] lg:block">
         <div className="sticky top-0 h-screen overflow-y-auto">
           <SidebarNav />
         </div>
@@ -34,7 +35,7 @@ export function DashboardShell({ user, children }: { user: User; children: React
       ) : null}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-(--color-border) bg-(--color-surface)/95 px-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-(--color-surface)/80 px-4 shadow-[0_1px_0_rgba(11,15,13,0.06)] backdrop-blur sm:px-6">
           <button
             type="button"
             aria-label="Open menu"
@@ -47,7 +48,9 @@ export function DashboardShell({ user, children }: { user: User; children: React
           <UserMenu user={user} />
         </header>
 
-        <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">{children}</main>
+        <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+          <RouteTransition>{children}</RouteTransition>
+        </main>
       </div>
     </div>
   );

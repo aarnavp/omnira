@@ -9,6 +9,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { FeatureGrid } from "@/components/marketing/feature-grid";
 import { NumberedSteps } from "@/components/marketing/numbered-steps";
 import { AnimatedHeroText } from "@/components/marketing/animated-hero-text";
+import { DeviceEarningGrid } from "@/components/marketing/device-earning-grid";
 
 export const metadata: Metadata = {
   title: "Contribute your hardware",
@@ -23,30 +24,30 @@ const DEVICE_KINDS = [
   },
   {
     title: "Servers & home labs",
-    body: "Rack space and always-on uptime become the network's most dependable capacity.",
+    body: "Rack space and always-on uptime, the network's most dependable capacity.",
   },
   {
     title: "Phones & tablets",
-    body: "Short bursts of spare compute while charging, contributing without draining your battery.",
+    body: "Short bursts of spare compute while charging — no battery drain.",
   },
 ];
 
 const CONTROLS = [
   {
     title: "You set the ceiling",
-    body: "Cap contribution at a fixed percentage of CPU, GPU, memory, and bandwidth. Omnira never goes above it.",
+    body: "A fixed cap on CPU, GPU, memory, and bandwidth. Omnira never goes above it.",
   },
   {
-    title: "Pause anytime, instantly",
-    body: "One switch, no cooldown, no penalty. Gaming, rendering, or just want quiet — your call, every time.",
+    title: "Pause, instantly",
+    body: "No cooldown, no penalty. Your own work always comes first.",
   },
   {
     title: "Choose your workloads",
-    body: "Opt in or out of general third-party workloads independently from your own deployments.",
+    body: "Opt in or out of third-party jobs independently of your own deployments.",
   },
   {
     title: "Schedule quiet hours",
-    body: "Automatically go idle during hours you define — no need to remember to pause manually.",
+    body: "Go idle automatically during hours you define.",
   },
 ];
 
@@ -54,22 +55,22 @@ const STEPS = [
   {
     step: "01",
     title: "Install and connect",
-    body: "Download Omnira for your platform. It detects your hardware and shows what it could realistically contribute before you commit to anything.",
+    body: "Omnira detects your hardware and shows what it could realistically contribute before you commit to anything.",
   },
   {
     step: "02",
     title: "Set your limits",
-    body: "Pick a contribution ceiling per resource, decide which workload types you'll accept, and set quiet hours if you want them.",
+    body: "Pick a ceiling per resource, choose which workloads to accept, and set quiet hours if you want them.",
   },
   {
     step: "03",
     title: "The network routes work to you",
-    body: "When there's demand nearby and your device is idle within your limits, it picks up requests — website traffic, API calls, model inference.",
+    body: "When there's demand nearby and your device is idle within limits, it picks up requests.",
   },
   {
     step: "04",
     title: "Earnings accrue and pay out",
-    body: "Track earnings live on your dashboard, broken down by device. Payouts run on a fixed schedule to the method you choose.",
+    body: "Track earnings live, broken down by device. Payouts run on a fixed schedule.",
   },
 ];
 
@@ -97,20 +98,22 @@ export default function ContributePage() {
     <div className="flex min-h-full flex-col">
       <SiteHeader />
 
-      <section className="border-b border-(--color-border) bg-(--color-surface)">
-        <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      {/* Hero: side-by-side, not centered — the visual is personal hardware,
+          not an abstract network object, so it sits beside the words. */}
+      <section className="bg-(--color-surface)">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-28 lg:px-8">
           <AnimatedHeroText>
-            <Badge tone="positive" dot className="mx-auto">
+            <Badge tone="positive" dot>
               For device owners
             </Badge>
             <h1 className="mt-6 font-(family-name:--font-display) text-4xl font-semibold tracking-tight text-(--color-text) sm:text-5xl">
               Your hardware works while you don&apos;t.
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-(--color-text-muted)">
+            <p className="mt-5 max-w-lg text-lg text-(--color-text-muted)">
               Connect a device, set a limit, and start earning from capacity that was sitting idle
-              anyway. No lock-in, no long-term contract — just an off switch you control.
+              anyway — no lock-in, and an off switch you control.
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/signup" size="lg">
                 Connect your first device
               </Button>
@@ -119,28 +122,28 @@ export default function ContributePage() {
               </Button>
             </div>
           </AnimatedHeroText>
+          <Reveal delay={0.15} className="hidden lg:block">
+            <DeviceEarningGrid />
+          </Reveal>
         </div>
       </section>
 
       {/* What contributes */}
-      <section className="border-b border-(--color-border) bg-(--color-surface-sunken)">
+      <section className="bg-(--color-surface-sunken)">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="font-(family-name:--font-display) text-2xl font-semibold text-(--color-text)">
               Every kind of device earns
             </h2>
-            <p className="mt-2 max-w-2xl text-(--color-text-muted)">
-              No data center required — the network is built from hardware people already own.
-            </p>
           </Reveal>
-          <div className="mt-10">
+          <div className="mt-8">
             <FeatureGrid items={DEVICE_KINDS} columns={3} />
           </div>
         </div>
       </section>
 
       {/* How earning works — a real sequence */}
-      <section className="border-b border-(--color-border) bg-(--color-surface)">
+      <section className="bg-(--color-surface)">
         <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="font-(family-name:--font-display) text-2xl font-semibold text-(--color-text)">
@@ -154,19 +157,15 @@ export default function ContributePage() {
       </section>
 
       {/* Controls & privacy */}
-      <section className="border-b border-(--color-border) bg-(--color-surface-sunken)">
+      <section className="bg-(--color-surface-sunken)">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="font-(family-name:--font-display) text-2xl font-semibold text-(--color-text)">
               You control the hardware, always
             </h2>
-            <p className="mt-2 max-w-2xl text-(--color-text-muted)">
-              Empowerment isn&apos;t a slogan here — it&apos;s the design constraint. The off switch is
-              never more than one tap away.
-            </p>
           </Reveal>
-          <div className="mt-10">
-            <FeatureGrid items={CONTROLS} columns={2} card={false} />
+          <div className="mt-8">
+            <FeatureGrid items={CONTROLS} columns={4} />
           </div>
         </div>
       </section>

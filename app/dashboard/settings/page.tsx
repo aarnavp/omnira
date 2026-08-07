@@ -136,8 +136,12 @@ export default function SettingsPage() {
           </CardBody>
         </Card>
 
-        <Card className="border-(--color-danger)/30">
-          <CardHeader eyebrow="Danger zone" title="Close your account" description="This pauses every device and deployment you own." />
+        <Card className="bg-[color-mix(in_srgb,var(--color-danger)_3%,var(--color-surface-raised))]">
+          <CardHeader
+            eyebrow={<span className="text-(--color-danger)">Danger zone</span>}
+            title="Close your account"
+            description="Pauses every device and deployment you own."
+          />
           <CardBody>
             {showDeleteConfirm ? (
               <div className="rounded-(--radius-md) bg-(--color-surface-sunken) p-4 text-sm text-(--color-text-muted)">

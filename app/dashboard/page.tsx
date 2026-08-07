@@ -35,7 +35,7 @@ export default function DashboardOverviewPage() {
       <RevealGroup className="grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.08}>
         <RevealItem variants={fadeUpItem} className="lg:col-span-2">
           <Card hoverLift className="h-full">
-            <CardHeader eyebrow="Contribute" title="Earnings" description="Last 30 days and lifetime totals." />
+            <CardHeader eyebrow="Contribute" title="Earnings" />
             <CardBody>
               {earnings.error ? (
                 <ErrorState message={earnings.error.message} onRetry={earnings.refetch} />

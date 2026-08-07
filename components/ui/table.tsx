@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils/cn";
 
 export function Table({ className, ...props }: TableHTMLAttributes<HTMLTableElement>) {
   return (
-    <div className="overflow-x-auto rounded-(--radius-lg) border border-(--color-border)">
+    <div className="overflow-x-auto">
       <table className={cn("w-full min-w-[560px] border-collapse text-sm", className)} {...props} />
     </div>
   );
@@ -11,7 +11,7 @@ export function Table({ className, ...props }: TableHTMLAttributes<HTMLTableElem
 
 export function Thead({ children }: { children: ReactNode }) {
   return (
-    <thead className="border-b border-(--color-border) bg-(--color-surface-sunken)">
+    <thead className="border-b border-(--color-border)">
       <tr>{children}</tr>
     </thead>
   );

@@ -23,9 +23,8 @@ export default function NetworkPage() {
               The network, as it runs right now
             </h1>
             <p className="mt-3 max-w-2xl text-(--color-text-muted)">
-              Every figure below comes from the same devices you can connect from the Contribute
-              side, and the same infrastructure the Deploy side ships onto. Nothing here is a demo
-              environment.
+              Live from the same devices Contribute connects, and the same infrastructure Deploy
+              ships onto — nothing here is a demo environment.
             </p>
           </AnimatedHeroText>
           <div className="mt-10">

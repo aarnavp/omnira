@@ -74,6 +74,13 @@
   --radius-xl: 24px;
   --radius-full: 999px;
 
+  /* ---- Elevation ----
+     A translucent-ink hairline instead of a solid border color — the
+     "premium hairline" technique (Linear/Stripe/Vercel): it reads as a
+     boundary without the harder, more clinical edge a solid stroke gives. */
+  --shadow-hairline: 0 0 0 1px rgba(11, 15, 13, 0.06), 0 1px 2px rgba(11, 15, 13, 0.03);
+  --shadow-hairline-raised: 0 0 0 1px rgba(11, 15, 13, 0.07), 0 16px 32px -16px rgba(11, 15, 13, 0.18);
+
   /* ---- Spacing scale (4px base) ---- */
   --spacing-scale-0: 0;
   --spacing-scale-1: 4px;
@@ -104,6 +111,12 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+  @keyframes earn-float {
+    0% { opacity: 0; transform: translate(-50%, 2px); }
+    15% { opacity: 1; transform: translate(-50%, 0); }
+    70% { opacity: 1; transform: translate(-50%, -10px); }
+    100% { opacity: 0; transform: translate(-50%, -14px); }
   }
 }
 

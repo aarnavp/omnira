@@ -31,7 +31,7 @@ export function NetworkLiveStrip({ variant = "full" }: { variant?: "full" | "com
       <CardHeader
         eyebrow="Live · the Omnira network"
         title="Real devices, serving real traffic."
-        description="Phones, computers, and servers contributing right now, plus everything the network has earned so far."
+        description="Every device contributing right now, plus everything the network has earned so far."
         action={
           <Badge tone="positive" dot pulse>
             {data ? `${data.totals.devicesOnlineNow} online now` : "—"}
@@ -147,9 +147,6 @@ export function NetworkLiveStrip({ variant = "full" }: { variant?: "full" | "com
               <div className="mt-8 border-t border-(--color-border) pt-6">
                 <p className="font-mono text-xs uppercase tracking-wider text-(--color-text-faint)">
                   Earnings by device type · last 365 days
-                </p>
-                <p className="mt-1 text-sm text-(--color-text-muted)">
-                  Every kind of device earns — no data center required.
                 </p>
                 <div className="mt-5">
                   {isLoading || !data ? (
