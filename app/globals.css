@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+  Omnira design tokens.
+  One spacing scale, one type scale, one set of semantic color tokens,
+  one radius scale. Nothing outside this file is hardcoded.
+*/
+@theme {
+  /* ---- Type families ---- */
+  --font-display: var(--font-space-grotesk), "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+
+  /* ---- Brand palette ---- */
+  --color-forest-900: #0a1f12;
+  --color-forest-700: #12321c;
+  --color-forest-500: #1b7a3d;
+  --color-signal-600: #189a4c;
+  --color-signal-500: #22c55e;
+  --color-signal-400: #4ade80;
+  --color-lime-400: #a6e22e;
+  --color-lime-300: #c3f562;
+
+  --color-ink-950: #070a08;
+  --color-ink-900: #0b0f0d;
+  --color-ink-800: #12160f;
+  --color-ink-700: #262e28;
+  --color-ink-600: #3a423e;
+  --color-ink-400: #6b756e;
+
+  --color-paper-0: #f8f9f6;
+  --color-paper-50: #f2f4ef;
+  --color-paper-100: #eaede6;
+  --color-paper-200: #dce1da;
+  --color-paper-white: #ffffff;
+
+  --color-amber-500: #d97706;
+  --color-amber-100: #fef3c7;
+  --color-amber-700: #b45309;
+  --color-red-600: #dc2626;
+  --color-red-100: #fee2e2;
+  --color-red-700: #b91c1c;
+
+  /* ---- Semantic tokens (light surfaces: marketing sub-pages + dashboard) ---- */
+  --color-surface: var(--color-paper-0);
+  --color-surface-raised: var(--color-paper-white);
+  --color-surface-sunken: var(--color-paper-100);
+  --color-border: var(--color-paper-200);
+  --color-text: var(--color-ink-900);
+  --color-text-muted: var(--color-ink-600);
+  --color-text-faint: var(--color-ink-400);
+  /* --color-accent is for TEXT and must hold 4.5:1 on --color-surface —
+     forest-500, not signal-600 (3.64:1, fails AA for body-sized text).
+     Use --color-brand for large graphics, fills, dots, and bars, where
+     3:1 or pure decoration is enough. */
+  --color-accent: var(--color-forest-500);
+  --color-brand: var(--color-signal-600);
+  --color-positive-text: var(--color-forest-500);
+  --color-warning-text: var(--color-amber-700);
+  --color-danger: var(--color-red-700);
+  --color-danger-strong: var(--color-red-600);
+
+  /* ---- Semantic tokens (dark canvas: marketing hero / footer) ---- */
+  --color-canvas: var(--color-ink-950);
+  --color-canvas-raised: var(--color-ink-800);
+  --color-canvas-border: #1d251f;
+  --color-canvas-text: #eef2ec;
+  --color-canvas-text-muted: #9aa79e;
+
+  /* ---- Radius scale ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --spacing-scale-0: 0;
+  --spacing-scale-1: 4px;
+  --spacing-scale-2: 8px;
+  --spacing-scale-3: 12px;
+  --spacing-scale-4: 16px;
+  --spacing-scale-6: 24px;
+  --spacing-scale-8: 32px;
+  --spacing-scale-12: 48px;
+  --spacing-scale-16: 64px;
+  --spacing-scale-24: 96px;
+
+  /* ---- Motion ---- */
+  --ease-out-signal: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-pulse-node: pulse-node 3.2s ease-in-out infinite;
+  --animate-rise: rise 0.6s var(--ease-out-signal) both;
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+
+  @keyframes pulse-node {
+    0%, 100% { opacity: 0.18; }
+    50% { opacity: 1; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+::selection {
+  background: var(--color-lime-400);
+  color: var(--color-ink-950);
+}
+
+/* Visible keyboard focus everywhere, respecting the token system. */
+:focus-visible {
+  outline: 2px solid var(--color-signal-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tabular numerals wherever mono data is shown, so figures don't jitter. */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
